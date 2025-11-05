@@ -8,4 +8,5 @@ export default defineConfig({
     host: true, // Listen on all network interfaces
     port: 5173,
   },
+  base: process.env.VITE_BASE_PATH || "/modesta",
 })
