@@ -117,7 +117,7 @@ const Navbar = () => {
               </Link>
             ))}
             <button
-              onClick={() => navigate('/rooms')}
+              onClick={() => navigate('/rooms/1/book')}
               className="bg-copper text-white px-7 py-2.5 text-xs font-semibold tracking-widest uppercase hover:bg-opacity-90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
               Book Now
@@ -171,7 +171,7 @@ const Navbar = () => {
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  navigate('/rooms');
+                  navigate('/rooms/1/book');
                 }}
                 className="bg-copper text-white px-6 py-3 font-semibold text-xs tracking-widest uppercase hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 w-full"
               >

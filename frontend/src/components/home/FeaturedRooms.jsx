@@ -26,60 +26,60 @@ const FeaturedRooms = () => {
     {
       id: 1,
       name: 'Cabin 1',
-      tagline: 'Where Dreams Touch the Sky',
+      tagline: 'Poolside Jungle Paradise',
       heroImage: '/images/cabin-1-main.jpg',
       details: [
         {
           image: '/images/cabin-1-small-1.jpg',
-          text: 'Wake to sunrise over endless ocean horizons, where each morning brings renewed wonder.'
+          text: 'Aerial views reveal our signature turquoise infinity pool winding through lush jungle, with private A-frame cabins offering direct access.'
         },
         {
           image: '/images/cabin-1-small-2.jpg',
-          text: 'Surrender to unparalleled luxury in 1,200 square feet of pure elegance and sophistication.'
+          text: 'Traditional thatched roofs and warm wood exteriors blend seamlessly with the surrounding tropical rainforest.'
         },
         {
           image: '/images/cabin-1-small-3.jpg',
-          text: 'Your private sanctuary awaits, where every detail whispers perfection.'
+          text: 'Your private deck overlooks pristine pool waters, framed by mountain vistas and verdant jungle canopy.'
         }
       ]
     },
     {
       id: 2,
       name: 'Cabin 2',
-      tagline: 'Merge with the Horizon',
+      tagline: 'Private Pool Villa',
       heroImage: '/images/cabin-2-main.jpg',
       details: [
         {
           image: '/images/cabin-2-small-1.jpg',
-          text: 'Float between sky and sea, where water meets infinity and time stands still.'
+          text: 'Your exclusive A-frame villa features a private infinity pool with in-pool lounge seating and elegant stone architectural accents.'
         },
         {
           image: '/images/cabin-2-small-2.jpg',
-          text: 'Bask in golden hour glow as the sun paints the water in shades of amber and rose.'
+          text: 'Stone chimney and expansive deck create a sophisticated outdoor sanctuary surrounded by swaying palms.'
         },
         {
           image: '/images/cabin-2-small-3.jpg',
-          text: 'Experience serenity redefined in our award-winning aquatic retreat.'
+          text: 'Bask under open tropical skies in complete privacy, where modern luxury meets natural beauty.'
         }
       ]
     },
     {
       id: 3,
       name: 'Cabin 3',
-      tagline: 'A Symphony of Nature',
+      tagline: 'Garden Terrace Retreat',
       heroImage: '/images/cabin-3-main.jpg',
       details: [
         {
           image: '/images/cabin-3-small-1.jpg',
-          text: 'Nestled in lush tropical gardens, where birdsong is your morning alarm.'
+          text: 'Charming A-frame architecture with authentic thatched roof and striking stone accent wall creates a stunning focal point.'
         },
         {
           image: '/images/cabin-3-small-2.jpg',
-          text: 'Find tranquility in your private oasis, surrounded by exotic flora and fragrant blooms.'
+          text: 'Stepping stone pathways wind through manicured lawns, leading to your private wooden terrace.'
         },
         {
           image: '/images/cabin-3-small-3.jpg',
-          text: 'Nature and luxury intertwine in perfect harmony, creating your personal Eden.'
+          text: 'Towering palms and vibrant tropical plants create a serene garden sanctuary, your peaceful escape from the world.'
         }
       ]
     }

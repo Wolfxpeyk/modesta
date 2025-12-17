@@ -6,7 +6,7 @@
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   FaUsers,
   FaRulerCombined,
@@ -231,6 +231,7 @@ const RoomCarousel = ({ room, roomIndex, currentImageIndex, setCurrentImageIndex
 };
 
 const RoomsPage = () => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -266,11 +267,11 @@ const RoomsPage = () => {
   const getMockData = () => [
     {
       id: 1,
-      category_name: 'Oceanview Suite',
-      category_slug: 'oceanview-suite',
-      short_description: 'Wake to sunrise over endless ocean horizons',
+      category_name: 'Cabin 1',
+      category_slug: 'cabin-1',
+      short_description: 'Poolside jungle paradise',
       description:
-        'Immerse yourself in unparalleled luxury with panoramic ocean views. Each suite features floor-to-ceiling windows, a private balcony, and bespoke furnishings that blend modern elegance with tropical charm.',
+        'Iconic A-frame cabin overlooking a stunning turquoise infinity pool. Surrounded by lush tropical jungle with mountain views, this retreat features a private poolside deck and direct access to the pristine communal pool. Traditional thatched roof meets modern luxury.',
       size_sqm: 85,
       max_occupancy: 3,
       max_adults: 2,
@@ -290,11 +291,11 @@ const RoomsPage = () => {
     },
     {
       id: 2,
-      category_name: 'Infinity Pool Villa',
-      category_slug: 'infinity-pool-villa',
-      short_description: 'Float between sky and sea in pure luxury',
+      category_name: 'Cabin 2',
+      category_slug: 'cabin-2',
+      short_description: 'Private pool villa',
       description:
-        'Experience the ultimate in privacy and indulgence. Your private infinity pool merges with the horizon, creating an illusion of floating between sky and ocean. Includes a spacious living area, outdoor shower, and sunset-facing terrace.',
+        'Exclusive A-frame villa with your own private infinity pool featuring in-pool lounge seating. Elegant stone chimney and deck create a sophisticated outdoor living space. Surrounded by swaying palms and tropical gardens under open skies—the ultimate private paradise.',
       size_sqm: 120,
       max_occupancy: 4,
       max_adults: 2,
@@ -314,11 +315,11 @@ const RoomsPage = () => {
     },
     {
       id: 3,
-      category_name: 'Garden Retreat',
-      category_slug: 'garden-retreat',
-      short_description: 'Nestled in lush tropical gardens',
+      category_name: 'Cabin 3',
+      category_slug: 'cabin-3',
+      short_description: 'Garden terrace retreat',
       description:
-        'Find tranquility in your private garden oasis. Surrounded by exotic flora and the gentle sounds of nature, this intimate retreat offers a peaceful escape with direct garden access, outdoor bathtub, and shaded terrace.',
+        'Charming A-frame cabin with authentic thatched roof and striking stone accent wall. Your private wooden deck overlooks a serene garden with stepping stone pathways through manicured lawns. Surrounded by towering palms and vibrant tropical plants—a peaceful garden sanctuary.',
       size_sqm: 75,
       max_occupancy: 2,
       max_adults: 2,
@@ -353,9 +354,9 @@ const RoomsPage = () => {
   // Determine unique badge for each room type
   const getRoomBadge = (room) => {
     const name = room.category_name?.toLowerCase() || '';
-    if (name.includes('pool') || name.includes('villa')) return 'Exclusive Villa';
-    if (name.includes('ocean') || name.includes('sea')) return 'Oceanview Suite';
-    if (name.includes('garden') || name.includes('retreat')) return 'Garden Sanctuary';
+    if (name.includes('cabin 1')) return 'Sky Dreams Suite';
+    if (name.includes('cabin 2')) return 'Horizon Villa';
+    if (name.includes('cabin 3')) return 'Nature Symphony';
     if (room.base_price >= 700) return 'Luxury Suite';
     if (room.base_price >= 500) return 'Premium Suite';
     return 'Deluxe Room';
@@ -566,7 +567,7 @@ const RoomsPage = () => {
                       View Details
                     </button>
                     <button
-                      onClick={() => window.open('https://www.booking.com', '_blank')}
+                      onClick={() => navigate(`/rooms/${room.id}/book`)}
                       className="bg-copper text-white px-6 py-3 font-semibold text-xs tracking-widest uppercase hover:bg-copper/90 transition-all duration-300 shadow-lg"
                     >
                       Book Now
