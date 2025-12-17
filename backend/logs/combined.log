@@ -1,0 +1,37 @@
+2025-11-02 07:49:33 [info]: ======================================================================
+2025-11-02 07:49:33 [info]: 🏨  MODESTA RESORT - LUXURY RESORT MANAGEMENT SYSTEM
+2025-11-02 07:49:33 [info]: ======================================================================
+2025-11-02 07:49:33 [info]: 🚀  Server running in development mode
+2025-11-02 07:49:33 [info]: 📡  API: http://localhost:5001/api/v1
+2025-11-02 07:49:33 [info]: 🔌  WebSocket: http://localhost:5001
+2025-11-02 07:49:33 [info]: 💚  Health Check: http://localhost:5001/health
+2025-11-02 07:49:33 [info]: ======================================================================
+2025-11-02 07:49:37 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:49:43 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:49:48 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:49:53 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:49:58 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:50:03 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:50:08 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:50:13 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:50:43 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:51:13 [warn]: 404 - Route not found - /api/v1/health - /api/v1/health - GET - ::1
+2025-11-02 07:51:23 [info]: Received shutdown signal, closing server gracefully...
+2025-11-02 07:51:40 [info]: ======================================================================
+2025-11-02 07:51:40 [info]: 🏨  MODESTA RESORT - LUXURY RESORT MANAGEMENT SYSTEM
+2025-11-02 07:51:40 [info]: ======================================================================
+2025-11-02 07:51:40 [info]: 🚀  Server running in development mode
+2025-11-02 07:51:40 [info]: 📡  API: http://localhost:5001/api/v1
+2025-11-02 07:51:40 [info]: 🔌  WebSocket: http://localhost:5001
+2025-11-02 07:51:40 [info]: 💚  Health Check: http://localhost:5001/health
+2025-11-02 07:51:40 [info]: ======================================================================
+2025-11-02 08:03:28 [info]: Received shutdown signal, closing server gracefully...
+2025-11-02 08:03:50 [info]: ======================================================================
+2025-11-02 08:03:50 [info]: 🏨  MODESTA RESORT - LUXURY RESORT MANAGEMENT SYSTEM
+2025-11-02 08:03:50 [info]: ======================================================================
+2025-11-02 08:03:50 [info]: 🚀  Server running in development mode
+2025-11-02 08:03:50 [info]: 📡  API: http://localhost:5001/api/v1
+2025-11-02 08:03:50 [info]: 🔌  WebSocket: http://localhost:5001
+2025-11-02 08:03:50 [info]: 💚  Health Check: http://localhost:5001/health
+2025-11-02 08:03:50 [info]: ======================================================================
+2025-11-08 13:08:03 [info]: Received shutdown signal, closing server gracefully...
