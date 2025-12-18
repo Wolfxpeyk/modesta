@@ -11,7 +11,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden" data-hero-section>
+    <section className="relative h-screen w-full overflow-hidden" data-hero-section>
       {/* Background Video with Portrait Mode Handling */}
       <div className="absolute inset-0">
         <video

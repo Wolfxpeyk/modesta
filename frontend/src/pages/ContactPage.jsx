@@ -655,7 +655,8 @@ const ContactPage = () => {
                         name="inquiryType"
                         value={formData.inquiryType}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-sm text-charcoal"
+                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-charcoal input-no-zoom appearance-none cursor-pointer"
+                        style={{ WebkitAppearance: 'none' }}
                         required
                       >
                         <option value="general">General Inquiry</option>
@@ -676,7 +677,7 @@ const ContactPage = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-sm text-charcoal"
+                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-charcoal input-no-zoom"
                         placeholder="Enter your full name"
                         required
                       />
@@ -693,7 +694,7 @@ const ContactPage = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-sm text-charcoal"
+                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-charcoal input-no-zoom"
                         placeholder="your@email.com"
                         required
                       />
@@ -710,7 +711,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-sm text-charcoal"
+                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-charcoal input-no-zoom"
                         placeholder="+63 912 345 6789"
                       />
                     </div>
@@ -726,7 +727,7 @@ const ContactPage = () => {
                         value={formData.message}
                         onChange={handleChange}
                         rows={5}
-                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-sm text-charcoal resize-none"
+                        className="w-full px-4 py-3.5 bg-[#fffbf2] border border-charcoal/15 focus:border-forest focus:outline-none transition-colors text-charcoal resize-none input-no-zoom"
                         placeholder="Please provide details about your inquiry"
                         required
                       />

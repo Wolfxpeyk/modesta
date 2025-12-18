@@ -8,14 +8,16 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight, FaCalendar, FaUsers, FaTag } from 'react-icons/fa';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const BookingPage = () => {
   const { roomId } = useParams();
   const navigate = useNavigate();
 
   // Booking state
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  const [checkIn, setCheckIn] = useState(null);
+  const [checkOut, setCheckOut] = useState(null);
   const [rooms, setRooms] = useState(1);
   const [guests, setGuests] = useState(2);
   const [promoCode, setPromoCode] = useState('');
@@ -26,10 +28,9 @@ const BookingPage = () => {
   const [expandedRoomInfo, setExpandedRoomInfo] = useState({});
   const [currentImageIndexes, setCurrentImageIndexes] = useState({});
 
-  // Get today's date in YYYY-MM-DD format
+  // Get today's date
   const getTodayDate = () => {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
+    return new Date();
   };
 
   // Get minimum checkout date (day after check-in)
@@ -37,20 +38,18 @@ const BookingPage = () => {
     if (!checkIn) return getTodayDate();
     const checkinDate = new Date(checkIn);
     checkinDate.setDate(checkinDate.getDate() + 1);
-    return checkinDate.toISOString().split('T')[0];
+    return checkinDate;
   };
 
   // Format date for display
-  const formatDate = (dateString) => {
-    if (!dateString) return '';
-    const date = new Date(dateString + 'T00:00:00');
+  const formatDate = (date) => {
+    if (!date) return '';
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
   // Format date for short display
-  const formatDateShort = (dateString) => {
-    if (!dateString) return '';
-    const date = new Date(dateString + 'T00:00:00');
+  const formatDateShort = (date) => {
+    if (!date) return '';
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   };
 
@@ -224,7 +223,7 @@ const BookingPage = () => {
       </Helmet>
 
       {/* Hero Section with Booking Form */}
-      <section className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden" data-hero-section>
+      <section className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] w-full overflow-hidden" data-hero-section>
         <div className="absolute inset-0">
           <img
             src="/images/booking-page-hero.jpg"
@@ -240,57 +239,59 @@ const BookingPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-white shadow-luxury-lg max-w-5xl w-full rounded-lg overflow-hidden"
+            className="bg-white shadow-luxury-lg max-w-5xl w-full rounded-md md:rounded-lg overflow-hidden"
           >
             <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_200px] gap-0 divide-y md:divide-y-0 md:divide-x divide-charcoal/5">
               {/* Date Selection */}
-              <div className="p-5 md:p-6 group hover:bg-cream/20 transition-colors">
-                <label className="flex items-center gap-2 text-[10px] font-bold text-charcoal/50 uppercase tracking-[0.15em] mb-3">
-                  <FaCalendar className="text-copper/60 text-xs" />
+              <div className="p-4 md:p-6 group hover:bg-cream/20 transition-colors">
+                <label className="flex items-center gap-2 text-[10px] font-bold text-charcoal/60 md:text-charcoal/50 uppercase tracking-[0.12em] md:tracking-[0.15em] mb-3">
+                  <FaCalendar className="text-copper/70 text-xs" />
                   Select Dates
                 </label>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 md:gap-3">
                   <div className="flex-1">
-                    <input
-                      type="date"
-                      value={checkIn}
-                      min={getTodayDate()}
-                      onChange={(e) => {
-                        setCheckIn(e.target.value);
-                        if (checkOut && e.target.value >= checkOut) {
-                          setCheckOut('');
+                    <DatePicker
+                      selected={checkIn}
+                      onChange={(date) => {
+                        setCheckIn(date);
+                        if (checkOut && date >= checkOut) {
+                          setCheckOut(null);
                         }
                       }}
-                      className="w-full px-3 py-2.5 border-0 border-b-2 border-charcoal/10 focus:border-copper focus:outline-none text-sm text-charcoal bg-transparent hover:border-charcoal/20 transition-all font-medium"
+                      minDate={getTodayDate()}
+                      placeholderText="mm/dd/yyyy"
+                      dateFormat="MM/dd/yyyy"
+                      className="w-full h-[44px] px-3 md:px-4 border border-charcoal/20 focus:border-copper focus:outline-none text-charcoal bg-white hover:bg-cream/30 focus:bg-white transition-all font-medium rounded-md input-no-zoom"
                     />
                   </div>
-                  <div className="flex items-center justify-center">
-                    <svg className="w-4 h-4 text-charcoal/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 md:w-4 md:h-4 text-charcoal/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <input
-                      type="date"
-                      value={checkOut}
-                      min={getMinCheckoutDate()}
-                      onChange={(e) => setCheckOut(e.target.value)}
+                    <DatePicker
+                      selected={checkOut}
+                      onChange={(date) => setCheckOut(date)}
+                      minDate={getMinCheckoutDate()}
+                      placeholderText="mm/dd/yyyy"
+                      dateFormat="MM/dd/yyyy"
                       disabled={!checkIn}
-                      className="w-full px-3 py-2.5 border-0 border-b-2 border-charcoal/10 focus:border-copper focus:outline-none text-sm text-charcoal bg-transparent hover:border-charcoal/20 transition-all disabled:opacity-40 disabled:cursor-not-allowed font-medium"
+                      className="w-full h-[44px] px-3 md:px-4 border border-charcoal/20 focus:border-copper focus:outline-none text-charcoal bg-white hover:bg-cream/30 focus:bg-white transition-all font-medium rounded-md disabled:opacity-40 disabled:cursor-not-allowed input-no-zoom"
                     />
                   </div>
                 </div>
                 {nights > 0 && (
-                  <p className="text-[11px] text-copper/70 font-semibold mt-2.5">
+                  <p className="text-[11px] text-copper/70 font-semibold mt-2">
                     {nights} {nights === 1 ? 'night' : 'nights'}
                   </p>
                 )}
               </div>
 
               {/* Rooms & Guests */}
-              <div className="p-5 md:p-6 group hover:bg-cream/20 transition-colors">
-                <label className="flex items-center gap-2 text-[10px] font-bold text-charcoal/50 uppercase tracking-[0.15em] mb-3">
-                  <FaUsers className="text-copper/60 text-xs" />
+              <div className="p-4 md:p-6 group hover:bg-cream/20 transition-colors">
+                <label className="flex items-center gap-2 text-[10px] font-bold text-charcoal/60 md:text-charcoal/50 uppercase tracking-[0.12em] md:tracking-[0.15em] mb-3">
+                  <FaUsers className="text-copper/70 text-xs" />
                   Rooms & Guests
                 </label>
                 <div className="relative">
@@ -301,7 +302,8 @@ const BookingPage = () => {
                       setRooms(Number(r));
                       setGuests(Number(g));
                     }}
-                    className="w-full px-3 py-2.5 border-0 border-b-2 border-charcoal/10 focus:border-copper focus:outline-none text-sm text-charcoal bg-transparent hover:border-charcoal/20 transition-all appearance-none cursor-pointer font-medium pr-8"
+                    className="w-full h-[44px] px-3 md:px-4 border border-charcoal/20 focus:border-copper focus:outline-none text-charcoal bg-white hover:bg-cream/30 focus:bg-white transition-all appearance-none cursor-pointer font-medium pr-10 rounded-md input-no-zoom"
+                    style={{ WebkitAppearance: 'none' }}
                   >
                     <option value="1-1">1 Room, 1 Guest</option>
                     <option value="1-2">1 Room, 2 Guests</option>
@@ -318,9 +320,9 @@ const BookingPage = () => {
               </div>
 
               {/* Promo Code */}
-              <div className="p-5 md:p-6 group hover:bg-cream/20 transition-colors md:min-w-[200px]">
-                <label className="flex items-center gap-2 text-[10px] font-bold text-charcoal/50 uppercase tracking-[0.15em] mb-3">
-                  <FaTag className="text-copper/60 text-xs" />
+              <div className="p-4 md:p-6 group hover:bg-cream/20 transition-colors md:min-w-[200px]">
+                <label className="flex items-center gap-2 text-[10px] font-bold text-charcoal/60 md:text-charcoal/50 uppercase tracking-[0.12em] md:tracking-[0.15em] mb-3">
+                  <FaTag className="text-copper/70 text-xs" />
                   Promo Code
                 </label>
                 {showPromoInput ? (
@@ -331,13 +333,13 @@ const BookingPage = () => {
                       onChange={(e) => setPromoCode(e.target.value)}
                       placeholder="Enter code"
                       autoFocus
-                      className="w-full px-3 h-[38px] border-0 border-b-2 border-charcoal/10 focus:border-copper focus:outline-none text-xs text-charcoal bg-transparent hover:border-charcoal/20 transition-all placeholder:text-charcoal/30 font-semibold uppercase tracking-wide"
+                      className="w-full h-[44px] px-3 md:px-4 border border-charcoal/20 focus:border-copper focus:outline-none text-charcoal bg-white hover:bg-cream/30 focus:bg-white transition-all placeholder:text-charcoal/30 font-semibold uppercase tracking-wide rounded-md input-no-zoom"
                     />
                   </div>
                 ) : (
                   <button
                     onClick={() => setShowPromoInput(true)}
-                    className="w-full h-[38px] text-xs text-copper font-semibold hover:text-copper/80 transition-all flex items-center justify-center gap-1.5 border-b-2 border-transparent hover:border-copper/20"
+                    className="w-full h-[44px] text-xs text-copper font-semibold hover:text-copper/80 transition-all flex items-center justify-center gap-1.5 border-b-2 border-transparent hover:border-copper/20"
                   >
                     <span className="tracking-wide">Add code</span>
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -356,7 +358,7 @@ const BookingPage = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6 lg:gap-10">
             {/* Left Column - All Room Options */}
-            <div className="space-y-6">
+            <div className="space-y-6 pb-32 lg:pb-0">
               {availableRooms.map((room) => {
                 const currentIndex = currentImageIndexes[room.id] || 0;
                 const isInfoExpanded = expandedRoomInfo[room.id] || false;
@@ -655,12 +657,10 @@ const BookingPage = () => {
               })}
             </div>
 
-            {/* Right Column - Booking Summary (Sticky) */}
-            <div>
-              <div
-                className="bg-white border border-charcoal/10 rounded-sm shadow-lg p-5"
-                style={{ position: 'sticky', top: '120px', zIndex: 10 }}
-              >
+            {/* Right Column - Booking Summary (Sticky) - Desktop Only */}
+            <div className="hidden lg:block">
+              <div className="bg-white border border-charcoal/10 rounded-sm shadow-lg p-5 lg:sticky lg:top-32 lg:z-10">
+
                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-copper/10">
                   <h3 className="text-lg font-playfair font-bold text-forest">Booking Summary</h3>
                   <svg className="w-5 h-5 text-copper/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -763,6 +763,56 @@ const BookingPage = () => {
             </div>
           </div>
         </div>
+
+        {/* ===== MOBILE STICKY BOTTOM BAR - TO UNDO: DELETE THIS ENTIRE SECTION ===== */}
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-copper/20 shadow-2xl z-50">
+          <div className="px-4 py-3">
+            {checkIn && checkOut && nights > 0 ? (
+              <div className="space-y-2">
+                {/* Dates and nights */}
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-charcoal/60 font-medium">
+                    {formatDateShort(checkIn)} - {formatDateShort(checkOut)}
+                  </span>
+                  <span className="text-copper/70 font-semibold">
+                    {nights} {nights === 1 ? 'night' : 'nights'}
+                  </span>
+                </div>
+
+                {/* Selected room and rate */}
+                {selectedRoom && selectedRate ? (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <p className="text-xs font-semibold text-forest">{selectedRoom.name}</p>
+                        <p className="text-[10px] text-charcoal/60">{selectedRate.name}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-lg font-playfair font-bold text-forest leading-none">
+                          ₱{(selectedRate.price * nights * rooms).toLocaleString()}
+                        </p>
+                        <p className="text-[10px] text-charcoal/50">Total</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={handleBook}
+                      className="w-full bg-copper text-white py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-copper/90 transition-all duration-300 rounded-sm"
+                    >
+                      Complete Booking
+                    </button>
+                  </>
+                ) : selectedRoom ? (
+                  <p className="text-xs text-center text-charcoal/60 py-2">Select a rate to continue</p>
+                ) : (
+                  <p className="text-xs text-center text-charcoal/60 py-2">Select a room to continue</p>
+                )}
+              </div>
+            ) : (
+              <p className="text-xs text-center text-charcoal/60 py-2">Select your dates above to begin</p>
+            )}
+          </div>
+        </div>
+        {/* ===== END MOBILE STICKY BOTTOM BAR ===== */}
       </section>
     </>
   );
